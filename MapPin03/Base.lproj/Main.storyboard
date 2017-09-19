@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MapPin03" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,30 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PGh-Bq-SV3">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PGh-Bq-SV3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="4Im-8E-klp"/>
+                            <constraint firstAttribute="trailing" secondItem="PGh-Bq-SV3" secondAttribute="trailing" id="9Vw-iS-HaX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PGh-Bq-SV3" secondAttribute="bottom" id="A65-X6-23v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PGh-Bq-SV3" secondAttribute="trailing" constant="52" id="ADO-VO-CNf"/>
+                            <constraint firstItem="PGh-Bq-SV3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LVd-aT-HtM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PGh-Bq-SV3" secondAttribute="bottom" constant="395" id="dsF-zB-tvU"/>
+                            <constraint firstItem="PGh-Bq-SV3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="hjv-91-vA8"/>
+                            <constraint firstItem="PGh-Bq-SV3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="124" id="ue1-Hc-uIZ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="myMapview" destination="PGh-Bq-SV3" id="LmX-pg-ccd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
     </scenes>
 </document>
