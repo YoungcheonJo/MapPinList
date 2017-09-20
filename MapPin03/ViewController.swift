@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var myMapview: MKMapView!
 
     override func viewDidLoad() {
@@ -46,6 +46,8 @@ class ViewController: UIViewController {
                 
                 annotations.append(annotation)
                 
+                myMapview.delegate = self
+                
             }
             
         }else{
@@ -64,12 +66,67 @@ class ViewController: UIViewController {
         myMapview.setRegion(region, animated: true)
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let identifier = "MyPin"
+        var  annotationView = myMapview.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            
+            if annotation.title! == "부산시민공원" {
+                // 부시민공원
+                annotationView?.pinTintColor = UIColor.green
+                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                leftIconView.image = UIImage(named:"1.jpg" )
+                annotationView?.leftCalloutAccessoryView = leftIconView
+                
+            } else if annotation.title! == "DIT 동의과학대학교" {
+                // 동의과학대학교
+                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+                leftIconView.image = UIImage(named:"32.gif" )
+                annotationView?.leftCalloutAccessoryView = leftIconView
+                
+            }else if annotation.title! == "부산여자대학교" {
+                // 부산여자대학교
+                annotationView?.pinTintColor = UIColor.yellow
+                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+                leftIconView.image = UIImage(named:"31.jpg" )
+                annotationView?.leftCalloutAccessoryView = leftIconView
+                
+            } else {
+                // 송상현광장
+                annotationView?.pinTintColor = UIColor.blue
+                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+                leftIconView.image = UIImage(named:"33.jpg" )
+                annotationView?.leftCalloutAccessoryView = leftIconView
+            }
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        let btn = UIButton(type: .detailDisclosure)
+        annotationView?.rightCalloutAccessoryView = btn
+        
+        return annotationView
+        
     }
 
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        print("callout Accessory Tapped!")
+        
+        let viewAnno = view.annotation
+        let viewTitle: String = ((viewAnno?.title)!)!
+        let viewSubTitle: String = ((viewAnno?.subtitle)!)!
+        
+        print("\(viewTitle) \(viewSubTitle)")
+        
+        let ac = UIAlertController(title: viewTitle, message: viewSubTitle, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(ac, animated: true, completion: nil)
+    }
 
 }
 
